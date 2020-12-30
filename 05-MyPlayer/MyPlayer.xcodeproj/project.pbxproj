@@ -7,19 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C43B6412259A4E99004B5F9A /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6411259A4E99004B5F9A /* MiniPlayerViewController.swift */; };
+		C43B6418259B87B2004B5F9A /* UIAlertController+setAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6417259B87B2004B5F9A /* UIAlertController+setAlert.swift */; };
+		C48F4BAE2598F4B6003C8147 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F4BAD2598F4B6003C8147 /* OSLog.swift */; };
+		C48F4BB32598F62A003C8147 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F4BB22598F62A003C8147 /* MainTableViewController.swift */; };
 		C4D90F2C259748500020006F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D90F2B259748500020006F /* AppDelegate.swift */; };
 		C4D90F2E259748500020006F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D90F2D259748500020006F /* SceneDelegate.swift */; };
-		C4D90F30259748500020006F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D90F2F259748500020006F /* ViewController.swift */; };
 		C4D90F33259748500020006F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4D90F31259748500020006F /* Main.storyboard */; };
 		C4D90F35259748510020006F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4D90F34259748510020006F /* Assets.xcassets */; };
 		C4D90F38259748510020006F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4D90F36259748510020006F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C43B6411259A4E99004B5F9A /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
+		C43B6417259B87B2004B5F9A /* UIAlertController+setAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+setAlert.swift"; sourceTree = "<group>"; };
+		C48F4BAD2598F4B6003C8147 /* OSLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
+		C48F4BB22598F62A003C8147 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		C4D90F28259748500020006F /* MyPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4D90F2B259748500020006F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4D90F2D259748500020006F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C4D90F2F259748500020006F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C4D90F32259748500020006F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C4D90F34259748510020006F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C4D90F37259748510020006F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -37,6 +43,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C48F4B982598EFF4003C8147 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C48F4BB22598F62A003C8147 /* MainTableViewController.swift */,
+				C43B6411259A4E99004B5F9A /* MiniPlayerViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C48F4B992598F002003C8147 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				C4D90F2B259748500020006F /* AppDelegate.swift */,
+				C4D90F2D259748500020006F /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		C48F4B9A2598F00C003C8147 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C4D90F31259748500020006F /* Main.storyboard */,
+				C4D90F36259748510020006F /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C48F4BAC2598F484003C8147 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C48F4BAD2598F4B6003C8147 /* OSLog.swift */,
+				C43B6417259B87B2004B5F9A /* UIAlertController+setAlert.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C4D90F1F259748500020006F = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +98,11 @@
 		C4D90F2A259748500020006F /* MyPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				C4D90F2B259748500020006F /* AppDelegate.swift */,
-				C4D90F2D259748500020006F /* SceneDelegate.swift */,
-				C4D90F2F259748500020006F /* ViewController.swift */,
-				C4D90F31259748500020006F /* Main.storyboard */,
+				C48F4B9A2598F00C003C8147 /* Storyboards */,
+				C48F4B992598F002003C8147 /* Delegates */,
+				C48F4B982598EFF4003C8147 /* ViewControllers */,
+				C48F4BAC2598F484003C8147 /* Extensions */,
 				C4D90F34259748510020006F /* Assets.xcassets */,
-				C4D90F36259748510020006F /* LaunchScreen.storyboard */,
 				C4D90F39259748510020006F /* Info.plist */,
 			);
 			path = MyPlayer;
@@ -137,8 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4D90F30259748500020006F /* ViewController.swift in Sources */,
+				C48F4BB32598F62A003C8147 /* MainTableViewController.swift in Sources */,
 				C4D90F2C259748500020006F /* AppDelegate.swift in Sources */,
+				C43B6418259B87B2004B5F9A /* UIAlertController+setAlert.swift in Sources */,
+				C48F4BAE2598F4B6003C8147 /* OSLog.swift in Sources */,
+				C43B6412259A4E99004B5F9A /* MiniPlayerViewController.swift in Sources */,
 				C4D90F2E259748500020006F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +333,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q26F7S66DB;
 				INFOPLIST_FILE = MyPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,6 +353,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q26F7S66DB;
 				INFOPLIST_FILE = MyPlayer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
