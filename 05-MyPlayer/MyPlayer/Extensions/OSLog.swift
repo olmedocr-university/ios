@@ -14,5 +14,7 @@ extension OSLog {
     
     static let mainTableViewController = OSLog(subsystem: subsystem, category: "MainTableViewController")
     static let miniPlayerViewController = OSLog(subsystem: subsystem, category: "MiniPlayerViewController")
-    
+    static let musicPlayer = OSLog(subsystem: subsystem, category: "MusicPlayer")
+    static let tabBarViewController = OSLog(subsystem: subsystem, category: "TabBarViewController")
+
 }

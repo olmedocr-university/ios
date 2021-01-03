@@ -7,6 +7,7 @@
 
 import UIKit
 import os
+import LNPopupController
 
 /*
  TODO:  - Set cool table view cells with images
@@ -34,17 +35,19 @@ class MainTableViewController: UITableViewController {
     let TAG = OSLog.mainTableViewController
     let tracksPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] // Document directory
     var trackList: [String]?
-    var miniPlayer: MiniPlayerViewController?
-    var isPlaying = false
+    var musicPlayer: MusicPlayer?
+    var isPlaying: Bool = false
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.clearsSelectionOnViewWillAppear = true
-        self.navigationItem.title = "MyPlayer"
         
         trackList = getStoredTracks()
+        
+        MusicPlayer.shared.tracksPath = tracksPath
+        MusicPlayer.shared.delegate = self
     }
 
     // MARK: - TableView Data Source
@@ -54,7 +57,7 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfRows = trackList?.count ?? 0
-        os_log("tableView::numberOfRowsInSection: Loading %{public}d cells", log: TAG, type: .debug, numberOfRows)
+        //os_log("tableView::numberOfRowsInSection: Loading %{public}d cells", log: TAG, type: .debug, numberOfRows)
 
         return numberOfRows
     }
@@ -77,11 +80,12 @@ class MainTableViewController: UITableViewController {
         }
         
         if !isPlaying {
-            setMiniPlayer()
+            MusicPlayer.shared.setupMiniPlayer(tabBarController: tabBarController!)
             isPlaying = true
         }
         
-        miniPlayer?.playTrack(track: selectedTrack)
+        MusicPlayer.shared.playTrack(track: selectedTrack)
+        
     }
     
     // MARK: - Internal
@@ -93,44 +97,9 @@ class MainTableViewController: UITableViewController {
         
         return files
     }
-    
-    func setMiniPlayer(){
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "miniPlayerViewController") as? MiniPlayerViewController else {
-            os_log("setMiniPlayer: unable to obtain the mini player view from the storyboard", log: TAG, type: .error)
-            
-            return
-        }
-
-        viewController.tracksPath = tracksPath
-        viewController.delegate = self
-        
-        miniPlayer = viewController
-
-        // Add the child view to the parent and setup constraints programatically
-        addChild(viewController)
-                
-        viewController.view.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(viewController.view)
-        
-        guard let bottomAnchor = parent?.view.bottomAnchor else {
-            os_log("setMiniPlayer: error setting up the miniplayer", log: TAG, type: .error)
-
-            return
-        }
-        
-        NSLayoutConstraint.activate([
-            viewController.view.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            viewController.view.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            viewController.view.bottomAnchor.constraint(equalTo: bottomAnchor),
-            viewController.view.heightAnchor.constraint(equalToConstant: 80.0 + view.safeAreaInsets.bottom)
-        ])
-        
-        os_log("setMiniPlayer: miniplayer correctly added to view", log: TAG, type: .debug)
-
-    }
 }
 
-extension MainTableViewController: MiniPlayerDelegate {
+extension MainTableViewController: MusicPlayerDelegate {
     func getNextTrack(currentTrack: String) -> String {
         guard let nextTrackIndex = trackList?.firstIndex(of: currentTrack) else {
             os_log("getNextTrack: unable to get next track index", log: TAG, type: .error)

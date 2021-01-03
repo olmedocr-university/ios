@@ -3,12 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C43B6412259A4E99004B5F9A /* MiniPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6411259A4E99004B5F9A /* MiniPlayerViewController.swift */; };
 		C43B6418259B87B2004B5F9A /* UIAlertController+setAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B6417259B87B2004B5F9A /* UIAlertController+setAlert.swift */; };
+		C43B641D25A1CB18004B5F9A /* LNPopupController in Frameworks */ = {isa = PBXBuildFile; productRef = C43B641C25A1CB18004B5F9A /* LNPopupController */; };
+		C43B641E25A1CB18004B5F9A /* LNPopupController in Embed Frameworks */ = {isa = PBXBuildFile; productRef = C43B641C25A1CB18004B5F9A /* LNPopupController */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		C43B642125A1CB67004B5F9A /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B642025A1CB67004B5F9A /* MusicPlayer.swift */; };
+		C43B642C25A1DFA8004B5F9A /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B642B25A1DFA8004B5F9A /* PlayerViewController.swift */; };
 		C48F4BAE2598F4B6003C8147 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F4BAD2598F4B6003C8147 /* OSLog.swift */; };
 		C48F4BB32598F62A003C8147 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F4BB22598F62A003C8147 /* MainTableViewController.swift */; };
 		C4D90F2C259748500020006F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D90F2B259748500020006F /* AppDelegate.swift */; };
@@ -18,9 +21,24 @@
 		C4D90F38259748510020006F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4D90F36259748510020006F /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C43B641F25A1CB19004B5F9A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C43B641E25A1CB18004B5F9A /* LNPopupController in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		C43B6411259A4E99004B5F9A /* MiniPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayerViewController.swift; sourceTree = "<group>"; };
 		C43B6417259B87B2004B5F9A /* UIAlertController+setAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+setAlert.swift"; sourceTree = "<group>"; };
+		C43B642025A1CB67004B5F9A /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		C43B642B25A1DFA8004B5F9A /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		C48F4BAD2598F4B6003C8147 /* OSLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
 		C48F4BB22598F62A003C8147 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		C4D90F28259748500020006F /* MyPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C43B641D25A1CB18004B5F9A /* LNPopupController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,7 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				C48F4BB22598F62A003C8147 /* MainTableViewController.swift */,
-				C43B6411259A4E99004B5F9A /* MiniPlayerViewController.swift */,
+				C43B642B25A1DFA8004B5F9A /* PlayerViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -98,6 +117,7 @@
 		C4D90F2A259748500020006F /* MyPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				C43B642025A1CB67004B5F9A /* MusicPlayer.swift */,
 				C48F4B9A2598F00C003C8147 /* Storyboards */,
 				C48F4B992598F002003C8147 /* Delegates */,
 				C48F4B982598EFF4003C8147 /* ViewControllers */,
@@ -118,12 +138,16 @@
 				C4D90F24259748500020006F /* Sources */,
 				C4D90F25259748500020006F /* Frameworks */,
 				C4D90F26259748500020006F /* Resources */,
+				C43B641F25A1CB19004B5F9A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MyPlayer;
+			packageProductDependencies = (
+				C43B641C25A1CB18004B5F9A /* LNPopupController */,
+			);
 			productName = MyPlayer;
 			productReference = C4D90F28259748500020006F /* MyPlayer.app */;
 			productType = "com.apple.product-type.application";
@@ -151,6 +175,9 @@
 				Base,
 			);
 			mainGroup = C4D90F1F259748500020006F;
+			packageReferences = (
+				C43B641B25A1CB18004B5F9A /* XCRemoteSwiftPackageReference "LNPopupController" */,
+			);
 			productRefGroup = C4D90F29259748500020006F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -182,7 +209,8 @@
 				C4D90F2C259748500020006F /* AppDelegate.swift in Sources */,
 				C43B6418259B87B2004B5F9A /* UIAlertController+setAlert.swift in Sources */,
 				C48F4BAE2598F4B6003C8147 /* OSLog.swift in Sources */,
-				C43B6412259A4E99004B5F9A /* MiniPlayerViewController.swift in Sources */,
+				C43B642C25A1DFA8004B5F9A /* PlayerViewController.swift in Sources */,
+				C43B642125A1CB67004B5F9A /* MusicPlayer.swift in Sources */,
 				C4D90F2E259748500020006F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +415,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C43B641B25A1CB18004B5F9A /* XCRemoteSwiftPackageReference "LNPopupController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LeoNatan/LNPopupController";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.26;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C43B641C25A1CB18004B5F9A /* LNPopupController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C43B641B25A1CB18004B5F9A /* XCRemoteSwiftPackageReference "LNPopupController" */;
+			productName = LNPopupController;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4D90F20259748500020006F /* Project object */;
 }
