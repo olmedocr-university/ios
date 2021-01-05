@@ -9,26 +9,6 @@ import UIKit
 import os
 import LNPopupController
 
-/*
- TODO:  - Set cool table view cells with images
-        - Setup big player to launch on mini player slide
-        - Fix button size mini player to make them more clickable
-        - Setup MusicXmatch extension
-        - Elegir entre carpetas y listas
-        - Proponer mini player - big player con animaciones
-        - Choose 3:
-             Controlar la App desde el Apple Watch
-             Crear listas de reproducción ()
-             Buscar carátulas y/o información de la pista
-             Buscar y mostrar la letra de las canciones
-             Gestionar carpetas ()
-             Reproducir desde Dropbox (requiere usar API de Dropbox)
-             Modo coche (Tabla y reproductor en letras grandes), modo oscuro (iOS 13)
-             Cualquier otra mejora que se proponga
- */
-
-
-
 class MainTableViewController: UITableViewController {
     
     // MARK: Properties
@@ -36,7 +16,7 @@ class MainTableViewController: UITableViewController {
     let tracksPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] // Document directory
     var trackList: [String]?
     var musicPlayer: MusicPlayer?
-    var isPlaying: Bool = false
+    var isPlaylist: Bool = false
     
     // MARK: - View Lifecycle
     override func viewDidLoad() {
@@ -44,10 +24,16 @@ class MainTableViewController: UITableViewController {
         
         self.clearsSelectionOnViewWillAppear = true
         
-        trackList = getStoredTracks()
-        
+        if !isPlaylist {
+            trackList = getStoredTracks()
+        }
+                
         MusicPlayer.shared.tracksPath = tracksPath
         MusicPlayer.shared.delegate = self
+        
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        tableView.allowsSelectionDuringEditing = false
     }
 
     // MARK: - TableView Data Source
@@ -57,13 +43,17 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfRows = trackList?.count ?? 0
-        //os_log("tableView::numberOfRowsInSection: Loading %{public}d cells", log: TAG, type: .debug, numberOfRows)
-
         return numberOfRows
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath)
+        let cell: UITableViewCell
+        
+        if isPlaylist {
+            cell = tableView.dequeueReusableCell(withIdentifier: "playlistTrackCell", for: indexPath)
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "trackCell", for: indexPath)
+        }
 
         cell.textLabel?.text = trackList?[indexPath.row]
 
@@ -79,13 +69,35 @@ class MainTableViewController: UITableViewController {
             return
         }
         
-        if !isPlaying {
+        if let _ = MusicPlayer.shared.audioPlayer {
+            // Player already setup
+        } else {
             MusicPlayer.shared.setupMiniPlayer(tabBarController: tabBarController!)
-            isPlaying = true
         }
         
         MusicPlayer.shared.playTrack(track: selectedTrack)
+        MusicPlayer.shared.updatePopupBar()
         
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            trackList?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard let rowToMove = trackList?[sourceIndexPath.row] else {
+            return
+        }
+        
+        trackList?.remove(at: sourceIndexPath.row)
+        trackList?.insert(rowToMove, at: destinationIndexPath.row)
     }
     
     // MARK: - Internal
@@ -101,7 +113,7 @@ class MainTableViewController: UITableViewController {
 
 extension MainTableViewController: MusicPlayerDelegate {
     func getNextTrack(currentTrack: String) -> String {
-        guard let nextTrackIndex = trackList?.firstIndex(of: currentTrack) else {
+        guard let currentTrackIndex = trackList?.firstIndex(of: currentTrack) else {
             os_log("getNextTrack: unable to get next track index", log: TAG, type: .error)
             return ""
         }
@@ -111,20 +123,53 @@ extension MainTableViewController: MusicPlayerDelegate {
             return ""
         }
         
-        if nextTrackIndex + 1 >= trackListEndIndex {
-            guard let nexTrack = trackList?[0] else {
+        if currentTrackIndex + 1 >= trackListEndIndex {
+            guard let nextTrack = trackList?[0] else {
                 os_log("getNextTrack: unable to get next track after finishing list", log: TAG, type: .error)
                 return ""
             }
             
-            return nexTrack
+            return nextTrack
         } else {
-            guard let nexTrack = trackList?[nextTrackIndex + 1] else {
+            guard let nextTrack = trackList?[currentTrackIndex + 1] else {
                 os_log("getNextTrack: unable to get next track", log: TAG, type: .error)
                 return ""
             }
             
-            return nexTrack
+            return nextTrack
+        }
+    }
+    
+    func getPreviousTrack(currentTrack: String) -> String {
+        guard let currentTrackIndex = trackList?.firstIndex(of: currentTrack) else {
+            os_log("getPreviousTrack: unable to get next track index", log: TAG, type: .error)
+            return ""
+        }
+        
+        guard let trackListStartIndex = trackList?.startIndex else {
+            os_log("getPreviousTrack: unable to get the first index of the track list", log: TAG, type: .error)
+            return ""
+        }
+        
+        guard let trackListEndIndex = trackList?.endIndex else {
+            os_log("getPreviousTrack: unable to get the last index of the track list", log: TAG, type: .error)
+            return ""
+        }
+        
+        if currentTrackIndex - 1 < trackListStartIndex {
+            guard let nextTrack = trackList?[trackListEndIndex - 1] else {
+                os_log("getPreviousTrack: unable to get previous track after starting list", log: TAG, type: .error)
+                return ""
+            }
+            
+            return nextTrack
+        } else {
+            guard let nextTrack = trackList?[currentTrackIndex - 1] else {
+                os_log("getPreviousTrack: unable to get previous track", log: TAG, type: .error)
+                return ""
+            }
+            
+            return nextTrack
         }
     }
 }

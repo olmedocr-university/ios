@@ -8,22 +8,56 @@
 import UIKit
 
 class PlayerViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    // MARK: Properties
+    
+    // MARK: IBOutlets
+    @IBOutlet weak var trackImage: UIImageView!
+    @IBOutlet weak var trackTitle: UILabel!
+    @IBOutlet weak var trackSubtitle: UILabel!
+    @IBOutlet weak var playPauseButton: UIButton!
+    @IBOutlet weak var durationSlider: UISlider!
+    
+    // MARK: IBActions
+    @IBAction func didTapPreviousButton(_ sender: UIButton) {
+        MusicPlayer.shared.playPreviousTrack()
+        updatePlayPauseButton()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func didTapPlayPauseButton(_ sender: UIButton) {
+        MusicPlayer.shared.playPauseCurrentTrack()
+        updatePlayPauseButton()
     }
-    */
+    
+    @IBAction func didTapNextButton(_ sender: UIButton) {
+        MusicPlayer.shared.playNextTrack()
+        updatePlayPauseButton()
+    }
+    
+    // MARK: View Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        updatePlayPauseButton()
+        print(trackImage.debugDescription)
+
+    }
+    
+    // MARK: Internal
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    func updatePlayPauseButton() {
+        guard let isPlaying = MusicPlayer.shared.audioPlayer?.isPlaying else {
+            return
+        }
+        
+        if isPlaying {
+            playPauseButton.setImage(UIImage(systemName: "pause.fill"), for: .normal)
+        } else {
+            playPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
+        }
+    }
 
 }
