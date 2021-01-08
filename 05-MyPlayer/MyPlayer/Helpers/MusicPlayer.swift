@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import OSLog
 import Alamofire
+import Kingfisher
 
 protocol MusicPlayerDelegate: class {
     func getNextTrack(currentTrack: String) -> String
@@ -81,14 +82,8 @@ class MusicPlayer: NSObject {
             playerViewController?.popupItem.image = UIImage(named: "Placeholder")
             playerViewController?.popupItem.progress = 0.0
             
-            fetchArtwork(trackName: (currentTrack?.replacingOccurrences(of: ".m4a", with: ""))!) { (artwork) in
-                // TODO: get image using kingfire and set it up on the mini and maxiplayer
-                // https://github.com/onevcat/Kingfisher
-                print(artwork)
-            }
-            
-            fetchLyrics(trackName: (currentTrack?.replacingOccurrences(of: ".m4a", with: ""))!) { (lyrics) in
-                print(lyrics)
+            fetchArtwork(trackName: (currentTrack?.replacingOccurrences(of: ".m4a", with: ""))!) { (url) in
+                self.downloadImage(urlString: url)
             }
             
             playerViewController?.trackTitle.text = currentTrack
@@ -182,6 +177,23 @@ class MusicPlayer: NSObject {
         playerViewController?.popupItem.progress = Float(audioPlayer!.currentTime) / Float(audioPlayer!.duration)
         playerViewController?.durationSlider.value = Float(audioPlayer!.currentTime)
     }
+    
+    func downloadImage(urlString : String){
+        guard let url = URL.init(string: urlString) else {
+            return
+        }
+        let resource = ImageResource(downloadURL: url)
+
+        KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+            switch result {
+            case .success(let value):
+                self.playerViewController?.popupItem.image = value.image
+                self.playerViewController?.trackImage.image = value.image
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
 }
 
 extension MusicPlayer: AVAudioPlayerDelegate {
@@ -221,8 +233,12 @@ extension MusicPlayer {
             }
     }
     
-    func fetchLyrics(trackName: String, onCompletion: @escaping (String) -> Void) {
-        fetchTrack(trackName: trackName) { (result) in
+    func fetchLyrics(onCompletion: @escaping (String) -> Void) {
+        guard let currentTrack = currentTrack else {
+            return
+        }
+        
+        fetchTrack(trackName: currentTrack.replacingOccurrences(of: ".m4a", with: "")) { (result) in
             
             let url = "https://api.musixmatch.com/ws/1.1/track.lyrics.get"
             let parameters: [String : Any] = [
@@ -232,7 +248,6 @@ extension MusicPlayer {
           
             AF.request(url, parameters: parameters)
                 .responseDecodable(of: LyricsResponse.self) { (response) in
-                    print(response)
                     guard let lyrics = response.value?.message.body.lyrics.lyricsBody else { return }
                     onCompletion(lyrics)
                 }

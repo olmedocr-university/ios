@@ -34,6 +34,16 @@ class PlayerViewController: UIViewController {
         updatePlayPauseButton()
     }
     
+    @IBAction func didTapOnLyricsButton(_ sender: Any) {
+        MusicPlayer.shared.fetchLyrics { (lyrics) in
+            if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "LyricsViewController") as? LyricsViewController {
+                
+                viewController.lyrics = lyrics
+                self.present(viewController, animated: true)
+            }
+        }
+    }
+    
     // MARK: View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,5 +69,7 @@ class PlayerViewController: UIViewController {
             playPauseButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
         }
     }
+    
+    
 
 }

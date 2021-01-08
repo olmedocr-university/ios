@@ -27,6 +27,6 @@ struct DeezerAlbum: Decodable {
     let coverUrl: String
     
     enum CodingKeys: String, CodingKey {
-        case coverUrl = "cover_medium"
+        case coverUrl = "cover_big"
     }
 }
