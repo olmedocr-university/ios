@@ -19,6 +19,7 @@
 		C49E51BA25A7818400399C0D /* TrackResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51B925A7818400399C0D /* TrackResponse.swift */; };
 		C49E51BC25A78AD000399C0D /* ArtworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51BB25A78AD000399C0D /* ArtworkResponse.swift */; };
 		C49E51BE25A8755F00399C0D /* LyricsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51BD25A8755F00399C0D /* LyricsResponse.swift */; };
+		C49E51C125A87EC900399C0D /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C49E51C025A87EC900399C0D /* Kingfisher */; };
 		C4D7652525A234E600759FAF /* PlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D7652425A234E600759FAF /* PlaylistsTableViewController.swift */; };
 		C4D7652B25A3319100759FAF /* NewPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D7652A25A3319100759FAF /* NewPlaylistViewController.swift */; };
 		C4D90F2C259748500020006F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D90F2B259748500020006F /* AppDelegate.swift */; };
@@ -68,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C49E51C125A87EC900399C0D /* Kingfisher in Frameworks */,
 				C43B641D25A1CB18004B5F9A /* LNPopupController in Frameworks */,
 				C49E51B225A76F4800399C0D /* Alamofire in Frameworks */,
 			);
@@ -185,6 +187,7 @@
 			packageProductDependencies = (
 				C43B641C25A1CB18004B5F9A /* LNPopupController */,
 				C49E51B125A76F4800399C0D /* Alamofire */,
+				C49E51C025A87EC900399C0D /* Kingfisher */,
 			);
 			productName = MyPlayer;
 			productReference = C4D90F28259748500020006F /* MyPlayer.app */;
@@ -216,6 +219,7 @@
 			packageReferences = (
 				C43B641B25A1CB18004B5F9A /* XCRemoteSwiftPackageReference "LNPopupController" */,
 				C49E51B025A76F4800399C0D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				C49E51BF25A87EC900399C0D /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = C4D90F29259748500020006F /* Products */;
 			projectDirPath = "";
@@ -478,6 +482,14 @@
 				minimumVersion = 5.4.1;
 			};
 		};
+		C49E51BF25A87EC900399C0D /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -490,6 +502,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C49E51B025A76F4800399C0D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		C49E51C025A87EC900399C0D /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C49E51BF25A87EC900399C0D /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
