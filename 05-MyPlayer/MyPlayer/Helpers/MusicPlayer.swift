@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import AVFoundation
 import OSLog
+import Alamofire
 
 protocol MusicPlayerDelegate: class {
     func getNextTrack(currentTrack: String) -> String
@@ -38,7 +39,7 @@ class MusicPlayer: NSObject {
         
         pauseButton.width = 60
         skipButton.width = 60
-
+        
         playerViewController?.popupItem.barButtonItems = [pauseButton, skipButton]
         playerViewController?.popupBar.progressViewStyle = .top
         
@@ -50,14 +51,14 @@ class MusicPlayer: NSObject {
     @objc func didTapPlayPause(sender: UIBarButtonItem!) {
         playPauseCurrentTrack()
         updatePopupBar()
-
+        
     }
     
     @objc func didTapSkip(sender: UIBarButtonItem!) {
         playNextTrack()
         updatePopupBar()
     }
-
+    
     func playTrack(track: String) {
         guard let soundPath = tracksPath?.appendingPathComponent(track) else {
             os_log("playTrack: unable to find the sound in the provided path", log: TAG, type: .error)
@@ -79,21 +80,30 @@ class MusicPlayer: NSObject {
             playerViewController?.popupItem.title = currentTrack
             playerViewController?.popupItem.image = UIImage(named: "Placeholder")
             playerViewController?.popupItem.progress = 0.0
-
+            
+            fetchArtwork(trackName: (currentTrack?.replacingOccurrences(of: ".m4a", with: ""))!) { (artwork) in
+                // TODO: get image using kingfire and set it up on the mini and maxiplayer
+                print(artwork)
+            }
+            
+            fetchLyrics(trackName: (currentTrack?.replacingOccurrences(of: ".m4a", with: ""))!) { (lyrics) in
+                print(lyrics)
+            }
+            
             playerViewController?.trackTitle.text = currentTrack
             playerViewController?.trackImage.image = UIImage(named: "Placeholder")
             playerViewController?.durationSlider.maximumValue = Float(audioPlayer.duration)
             playerViewController?.durationSlider.minimumValue = 0.0
             
             Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
-
+            
             audioPlayer.prepareToPlay()
             audioPlayer.play()
             
             updatePopupBar()
             
             os_log("playTrack: currently playing track is now %{public}@", log: TAG, type: .debug, currentTrack ?? "nil")
-
+            
         } catch {
             os_log("playTrack: unable to reproduce the sound using AVAudioPlayer", log: TAG, type: .error)
             
@@ -106,7 +116,7 @@ class MusicPlayer: NSObject {
             playerViewController.present(alert, animated: true) {
                 return
             }
-    
+            
         }
     }
     
@@ -176,5 +186,55 @@ class MusicPlayer: NSObject {
 extension MusicPlayer: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         playNextTrack()
+    }
+}
+
+extension MusicPlayer {
+    func fetchArtwork(trackName: String, onCompletion: @escaping (String) -> Void) {
+        fetchTrack(trackName: trackName) { (result) in
+            
+            let url = "https://api.deezer.com/search"
+            let parameters: [String : String] = [
+                "q" : result.track.trackName
+            ]
+          
+            AF.request(url, parameters: parameters)
+                .responseDecodable(of: ArtworkResponse.self) { (response) in
+                    guard let artwork = response.value?.data.first?.album.coverUrl else { return }
+                    onCompletion(artwork)
+                }
+        }
+    }
+    
+    func fetchTrack(trackName: String, onCompletion: @escaping (Track) -> Void) {
+        let url = "https://api.musixmatch.com/ws/1.1/track.search"
+        let parameters: [String : String] = [
+            "apikey" : "182244511a89cf75e05508d9b71c1d50",
+            "q_track_artist" : trackName
+        ]
+        
+        AF.request(url, parameters: parameters)
+            .responseDecodable(of: TrackResponse.self) { (response) in
+                guard let track = response.value?.message.body.trackList.first else { return }
+                onCompletion(track)
+            }
+    }
+    
+    func fetchLyrics(trackName: String, onCompletion: @escaping (String) -> Void) {
+        fetchTrack(trackName: trackName) { (result) in
+            
+            let url = "https://api.musixmatch.com/ws/1.1/track.lyrics.get"
+            let parameters: [String : Any] = [
+                "apikey" : "182244511a89cf75e05508d9b71c1d50",
+                "track_id" : result.track.trackId
+            ]
+          
+            AF.request(url, parameters: parameters)
+                .responseDecodable(of: LyricsResponse.self) { (response) in
+                    print(response)
+                    guard let lyrics = response.value?.message.body.lyrics.lyricsBody else { return }
+                    onCompletion(lyrics)
+                }
+        }
     }
 }

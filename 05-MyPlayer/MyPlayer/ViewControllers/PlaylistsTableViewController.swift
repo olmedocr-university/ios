@@ -106,6 +106,14 @@ class PlaylistsTableViewController: UITableViewController {
         return nil
     }
     
+    func saveOnUserDefaults(key: String, value: String?) {
+        defaults.set(value, forKey: key)
+    }
+    
+    func readFromUserDefaults(key: String) -> String? {
+        return defaults.string(forKey: key)
+    }
+    
 }
 
 extension PlaylistsTableViewController: NewPlaylistDelegate {

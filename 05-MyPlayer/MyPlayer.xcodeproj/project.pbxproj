@@ -14,11 +14,11 @@
 		C43B642C25A1DFA8004B5F9A /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43B642B25A1DFA8004B5F9A /* PlayerViewController.swift */; };
 		C48F4BAE2598F4B6003C8147 /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F4BAD2598F4B6003C8147 /* OSLog.swift */; };
 		C48F4BB32598F62A003C8147 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48F4BB22598F62A003C8147 /* MainTableViewController.swift */; };
-		C49E519F25A3B7A700399C0D /* Playlists.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C49E519D25A3B7A700399C0D /* Playlists.xcdatamodeld */; };
-		C49E51A425A3B8BE00399C0D /* Track+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51A025A3B8BE00399C0D /* Track+CoreDataClass.swift */; };
-		C49E51A525A3B8BE00399C0D /* Track+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51A125A3B8BE00399C0D /* Track+CoreDataProperties.swift */; };
-		C49E51A625A3B8BE00399C0D /* Playlist+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51A225A3B8BE00399C0D /* Playlist+CoreDataClass.swift */; };
-		C49E51A725A3B8BE00399C0D /* Playlist+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51A325A3B8BE00399C0D /* Playlist+CoreDataProperties.swift */; };
+		C49E51AF25A7698900399C0D /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51AE25A7698900399C0D /* Playlist.swift */; };
+		C49E51B225A76F4800399C0D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C49E51B125A76F4800399C0D /* Alamofire */; };
+		C49E51BA25A7818400399C0D /* TrackResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51B925A7818400399C0D /* TrackResponse.swift */; };
+		C49E51BC25A78AD000399C0D /* ArtworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51BB25A78AD000399C0D /* ArtworkResponse.swift */; };
+		C49E51BE25A8755F00399C0D /* LyricsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49E51BD25A8755F00399C0D /* LyricsResponse.swift */; };
 		C4D7652525A234E600759FAF /* PlaylistsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D7652425A234E600759FAF /* PlaylistsTableViewController.swift */; };
 		C4D7652B25A3319100759FAF /* NewPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D7652A25A3319100759FAF /* NewPlaylistViewController.swift */; };
 		C4D90F2C259748500020006F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D90F2B259748500020006F /* AppDelegate.swift */; };
@@ -48,11 +48,10 @@
 		C43B642B25A1DFA8004B5F9A /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		C48F4BAD2598F4B6003C8147 /* OSLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
 		C48F4BB22598F62A003C8147 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
-		C49E519E25A3B7A700399C0D /* Playlists.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Playlists.xcdatamodel; sourceTree = "<group>"; };
-		C49E51A025A3B8BE00399C0D /* Track+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Track+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C49E51A125A3B8BE00399C0D /* Track+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Track+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C49E51A225A3B8BE00399C0D /* Playlist+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Playlist+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C49E51A325A3B8BE00399C0D /* Playlist+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Playlist+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C49E51AE25A7698900399C0D /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		C49E51B925A7818400399C0D /* TrackResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackResponse.swift; sourceTree = "<group>"; };
+		C49E51BB25A78AD000399C0D /* ArtworkResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtworkResponse.swift; sourceTree = "<group>"; };
+		C49E51BD25A8755F00399C0D /* LyricsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LyricsResponse.swift; sourceTree = "<group>"; };
 		C4D7652425A234E600759FAF /* PlaylistsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsTableViewController.swift; sourceTree = "<group>"; };
 		C4D7652A25A3319100759FAF /* NewPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaylistViewController.swift; sourceTree = "<group>"; };
 		C4D90F28259748500020006F /* MyPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C43B641D25A1CB18004B5F9A /* LNPopupController in Frameworks */,
+				C49E51B225A76F4800399C0D /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,21 +114,21 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		C4D7653425A3ACE600759FAF /* Model */ = {
+		C49E51AD25A7697000399C0D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C49E51A025A3B8BE00399C0D /* Track+CoreDataClass.swift */,
-				C49E51A125A3B8BE00399C0D /* Track+CoreDataProperties.swift */,
-				C49E51A225A3B8BE00399C0D /* Playlist+CoreDataClass.swift */,
-				C49E51A325A3B8BE00399C0D /* Playlist+CoreDataProperties.swift */,
-				C49E519D25A3B7A700399C0D /* Playlists.xcdatamodeld */,
+				C49E51AE25A7698900399C0D /* Playlist.swift */,
+				C49E51B925A7818400399C0D /* TrackResponse.swift */,
+				C49E51BB25A78AD000399C0D /* ArtworkResponse.swift */,
+				C49E51BD25A8755F00399C0D /* LyricsResponse.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C4D7653525A3AD0700759FAF /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C4D90F29259748500020006F /* Products */,
 				C43B642025A1CB67004B5F9A /* MusicPlayer.swift */,
 			);
 			path = Helpers;
@@ -138,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				C4D90F2A259748500020006F /* MyPlayer */,
-				C4D90F29259748500020006F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -148,6 +147,7 @@
 				C4D90F28259748500020006F /* MyPlayer.app */,
 			);
 			name = Products;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		C4D90F2A259748500020006F /* MyPlayer */ = {
@@ -157,8 +157,8 @@
 				C48F4B992598F002003C8147 /* Delegates */,
 				C48F4B982598EFF4003C8147 /* ViewControllers */,
 				C48F4BAC2598F484003C8147 /* Extensions */,
+				C49E51AD25A7697000399C0D /* Models */,
 				C4D7653525A3AD0700759FAF /* Helpers */,
-				C4D7653425A3ACE600759FAF /* Model */,
 				C4D90F34259748510020006F /* Assets.xcassets */,
 				C4D90F39259748510020006F /* Info.plist */,
 			);
@@ -184,6 +184,7 @@
 			name = MyPlayer;
 			packageProductDependencies = (
 				C43B641C25A1CB18004B5F9A /* LNPopupController */,
+				C49E51B125A76F4800399C0D /* Alamofire */,
 			);
 			productName = MyPlayer;
 			productReference = C4D90F28259748500020006F /* MyPlayer.app */;
@@ -214,6 +215,7 @@
 			mainGroup = C4D90F1F259748500020006F;
 			packageReferences = (
 				C43B641B25A1CB18004B5F9A /* XCRemoteSwiftPackageReference "LNPopupController" */,
+				C49E51B025A76F4800399C0D /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = C4D90F29259748500020006F /* Products */;
 			projectDirPath = "";
@@ -242,20 +244,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C49E51A725A3B8BE00399C0D /* Playlist+CoreDataProperties.swift in Sources */,
-				C49E51A525A3B8BE00399C0D /* Track+CoreDataProperties.swift in Sources */,
 				C48F4BB32598F62A003C8147 /* MainTableViewController.swift in Sources */,
 				C4D7652B25A3319100759FAF /* NewPlaylistViewController.swift in Sources */,
 				C4D90F2C259748500020006F /* AppDelegate.swift in Sources */,
 				C43B6418259B87B2004B5F9A /* UIAlertController+setAlert.swift in Sources */,
+				C49E51BA25A7818400399C0D /* TrackResponse.swift in Sources */,
 				C48F4BAE2598F4B6003C8147 /* OSLog.swift in Sources */,
-				C49E51A425A3B8BE00399C0D /* Track+CoreDataClass.swift in Sources */,
 				C43B642C25A1DFA8004B5F9A /* PlayerViewController.swift in Sources */,
-				C49E519F25A3B7A700399C0D /* Playlists.xcdatamodeld in Sources */,
-				C49E51A625A3B8BE00399C0D /* Playlist+CoreDataClass.swift in Sources */,
+				C49E51BE25A8755F00399C0D /* LyricsResponse.swift in Sources */,
 				C4D7652525A234E600759FAF /* PlaylistsTableViewController.swift in Sources */,
 				C43B642125A1CB67004B5F9A /* MusicPlayer.swift in Sources */,
+				C49E51BC25A78AD000399C0D /* ArtworkResponse.swift in Sources */,
 				C4D90F2E259748500020006F /* SceneDelegate.swift in Sources */,
+				C49E51AF25A7698900399C0D /* Playlist.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +470,14 @@
 				minimumVersion = 2.10.26;
 			};
 		};
+		C49E51B025A76F4800399C0D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -477,20 +486,12 @@
 			package = C43B641B25A1CB18004B5F9A /* XCRemoteSwiftPackageReference "LNPopupController" */;
 			productName = LNPopupController;
 		};
-/* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		C49E519D25A3B7A700399C0D /* Playlists.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C49E519E25A3B7A700399C0D /* Playlists.xcdatamodel */,
-			);
-			currentVersion = C49E519E25A3B7A700399C0D /* Playlists.xcdatamodel */;
-			path = Playlists.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
+		C49E51B125A76F4800399C0D /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C49E51B025A76F4800399C0D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
-/* End XCVersionGroup section */
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4D90F20259748500020006F /* Project object */;
 }
