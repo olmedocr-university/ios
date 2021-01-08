@@ -83,6 +83,7 @@ class MusicPlayer: NSObject {
             
             fetchArtwork(trackName: (currentTrack?.replacingOccurrences(of: ".m4a", with: ""))!) { (artwork) in
                 // TODO: get image using kingfire and set it up on the mini and maxiplayer
+                // https://github.com/onevcat/Kingfisher
                 print(artwork)
             }
             
